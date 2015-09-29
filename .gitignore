@@ -1,0 +1,30 @@
+# Build results
+Debug/
+deubg/
+DebugPublic/
+debugPublic/
+Release/
+release/
+Releases/
+Releases/
+x64/
+x86/
+build/
+bld/
+bin/
+Bin/
+obj/
+Obj/
+
+.DS_Store
+logs
+.vs/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs

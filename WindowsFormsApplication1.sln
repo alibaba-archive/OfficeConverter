@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testWindow", "WindowsFormsApplication1\testWindow.csproj", "{714D0176-CB8A-4FC0-BBE6-41300A082863}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeConvert", "OfficeConvert\OfficeConvert.csproj", "{2CBF0438-C744-4C59-9AAD-ED94808A1023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{41A98FC6-745C-4D23-BC3F-D5CD155407E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{714D0176-CB8A-4FC0-BBE6-41300A082863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714D0176-CB8A-4FC0-BBE6-41300A082863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714D0176-CB8A-4FC0-BBE6-41300A082863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714D0176-CB8A-4FC0-BBE6-41300A082863}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CBF0438-C744-4C59-9AAD-ED94808A1023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBF0438-C744-4C59-9AAD-ED94808A1023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBF0438-C744-4C59-9AAD-ED94808A1023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBF0438-C744-4C59-9AAD-ED94808A1023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A98FC6-745C-4D23-BC3F-D5CD155407E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A98FC6-745C-4D23-BC3F-D5CD155407E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A98FC6-745C-4D23-BC3F-D5CD155407E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A98FC6-745C-4D23-BC3F-D5CD155407E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
