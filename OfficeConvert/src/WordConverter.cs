@@ -23,7 +23,7 @@ namespace OfficeConvert
             {
                 app = new Word.Application();
                 docs = app.Documents;
-                doc = docs.Open(inputFile, nothing, true, false, nothing, nothing, true, nothing, nothing, nothing, nothing, false, false, nothing, true, nothing);
+                doc = docs.Open(inputFile, false, true, false, nothing, nothing, true, nothing, nothing, nothing, nothing, false, false, nothing, true, nothing);
                 //doc.SaveAs2(outputFile, Word.WdSaveFormat.wdFormatPDF, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing);
                 doc.ExportAsFixedFormat(outputFile, Word.WdExportFormat.wdExportFormatPDF, false, Word.WdExportOptimizeFor.wdExportOptimizeForOnScreen, Microsoft.Office.Interop.Word.WdExportRange.wdExportAllDocument, 1, 1, Word.WdExportItem.wdExportDocumentContent, false, false, Word.WdExportCreateBookmarks.wdExportCreateNoBookmarks, false, false, false, nothing);
             }
@@ -34,17 +34,38 @@ namespace OfficeConvert
             
             if (doc != null)
             {
-                doc.Close();
+                try
+                {
+                    doc.Close(false);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
             if (docs != null)
             {
-                docs.Close(false);
+                try
+                {
+                    docs.Close(false);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
             if (app != null)
             {
-                app.Quit();
+                try
+                {
+                    app.Quit();
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
         }

@@ -17,9 +17,9 @@ namespace OfficeConvert
 
         public void Convert(String inputFile, String outputFile)
         {
+            Object nothing = Type.Missing;
             try
             {
-                Object nothing = System.Reflection.Missing.Value;
                 app = new Excel.Application();
                 books = app.Workbooks;
                 book = books.Open(inputFile, false, true, nothing, nothing, nothing, true, nothing, nothing, false, false, nothing, false, nothing, false);
@@ -32,17 +32,38 @@ namespace OfficeConvert
 
             if (book != null)
             {
-                book.Close();
+                try
+                {
+                    book.Close(false);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
             if (books != null)
             {
-                books.Close();
+                try
+                {
+                    books.Close();
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
             if (app != null)
             {
-                app.Quit();
+                try
+                {
+                    app.Quit();
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         }
     }

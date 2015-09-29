@@ -32,12 +32,26 @@ namespace OfficeConvert
 
             if (presentation != null)
             {
-                presentation.Close();
+                try
+                {
+                    presentation.Close();
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
             if (app != null)
             {
-                app.Quit();
+                try
+                {
+                    app.Quit();
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         }
     }
