@@ -23,7 +23,7 @@ namespace OfficeConvert
                 app = new Excel.Application();
                 books = app.Workbooks;
                 book = books.Open(inputFile, false, true, nothing, nothing, nothing, true, nothing, nothing, false, false, nothing, false, nothing, false);
-                book.ExportAsFixedFormat(Microsoft.Office.Interop.Excel.XlFixedFormatType.xlTypePDF, outputFile, Excel.XlFixedFormatQuality.xlQualityMinimum, false, false, 1, 1, false, nothing);
+                book.ExportAsFixedFormat(Microsoft.Office.Interop.Excel.XlFixedFormatType.xlTypePDF, outputFile, Excel.XlFixedFormatQuality.xlQualityMinimum, false, false, nothing, nothing, false, nothing);
             }
             catch (Exception e)
             {
