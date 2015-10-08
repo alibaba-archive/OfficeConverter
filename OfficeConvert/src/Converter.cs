@@ -6,8 +6,23 @@ using System.Threading.Tasks;
 
 namespace OfficeConvert
 {
-    public interface Converter
+    public abstract class Converter
     {
-        void Convert(String inputFile, String outputFile);
+        public abstract void Convert(String inputFile, String outputFile);
+
+        protected void releaseCOMObject(object obj)
+        {
+            try
+            {
+                if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                {
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                }
+            }
+            catch
+            {
+            }
+            obj = null;
+        }
     }
 }

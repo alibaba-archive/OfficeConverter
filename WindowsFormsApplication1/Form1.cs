@@ -19,6 +19,18 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        private void tryConvert(Converter converter, String inputFile, String outputFile)
+        {
+            try
+            {
+                converter.Convert(inputFile, outputFile);
+            }
+            catch (ConvertException err)
+            {
+                MessageBox.Show(err.Message + "\n" + err.StackTrace);
+            }
+        }
+
         private void btnWordClick(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -26,7 +38,7 @@ namespace WindowsFormsApplication1
             String inputFile = op.FileName;
             String outputFile = String.Concat(inputFile, ".pdf");
             Converter converter = new WordConverter();
-            converter.Convert(inputFile, outputFile);
+            tryConvert(converter, inputFile, outputFile);
         }
 
         private void btnExcelClick(object sender, EventArgs e)
@@ -36,7 +48,7 @@ namespace WindowsFormsApplication1
             String inputFile = op.FileName;
             String outputFile = String.Concat(inputFile, ".pdf");
             Converter converter = new ExcelConverter();
-            converter.Convert(inputFile, outputFile);
+            tryConvert(converter, inputFile, outputFile);
         }
 
         private void btnPptClick(object sender, EventArgs e)
@@ -46,7 +58,7 @@ namespace WindowsFormsApplication1
             String inputFile = op.FileName;
             String outputFile = String.Concat(inputFile, ".pdf");
             Converter converter = new PowerPointConverter();
-            converter.Convert(inputFile, outputFile);
+            tryConvert(converter, inputFile, outputFile);
         }
     }
 }

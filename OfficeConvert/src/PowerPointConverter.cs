@@ -15,7 +15,7 @@ namespace OfficeConvert
         private PowerPoint.Presentations presentations;
         private PowerPoint.Presentation presentation;
 
-        public void Convert(String inputFile, String outputFile)
+        public override void Convert(String inputFile, String outputFile)
         {
             try
             {
@@ -27,14 +27,20 @@ namespace OfficeConvert
             }
             catch (Exception e)
             {
+                release();
                 throw new ConvertException(e.Message);
             }
+            release();
+        }
 
+        private void release()
+        { 
             if (presentation != null)
             {
                 try
                 {
                     presentation.Close();
+                    releaseCOMObject(presentation);
                 }
                 catch (Exception e)
                 {
@@ -47,6 +53,7 @@ namespace OfficeConvert
                 try
                 {
                     app.Quit();
+                    releaseCOMObject(app);
                 }
                 catch (Exception e)
                 {

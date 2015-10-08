@@ -16,7 +16,7 @@ namespace OfficeConvert
         private Word.Documents docs;
         private Word.Document doc;
 
-        public void Convert(String inputFile, String outputFile)
+        public override void Convert(String inputFile, String outputFile)
         {
             Object nothing = System.Reflection.Missing.Value;
             try
@@ -28,14 +28,20 @@ namespace OfficeConvert
             }
             catch (Exception e)
             {
+                release();
                 throw new ConvertException(e.Message);
             }
-            
+            release();
+        }
+
+        private void release()
+        {
             if (doc != null)
             {
                 try
                 {
                     doc.Close(false);
+                    releaseCOMObject(doc);
                 }
                 catch (Exception e)
                 {
@@ -48,6 +54,7 @@ namespace OfficeConvert
                 try
                 {
                     docs.Close(false);
+                    releaseCOMObject(docs);
                 }
                 catch (Exception e)
                 {
@@ -60,6 +67,7 @@ namespace OfficeConvert
                 try
                 {
                     app.Quit();
+                    releaseCOMObject(app);
                 }
                 catch (Exception e)
                 {
