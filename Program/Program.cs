@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using OfficeConvert;
+using System.Reflection;
 
 namespace Program
 {
@@ -17,16 +18,13 @@ namespace Program
 
         private static void log(String message)
         {
-            if ((Boolean)options["verbose"])
-            {
-                Console.WriteLine(message);
-            }
+            if (!options.ContainsKey("verbose")) return;
+            Console.WriteLine(message);
         }
 
         private static void init()
         {
             options = new Hashtable();
-            options["verbose"] = false;
 
             inputFile = null;
             outputFile = null;
@@ -73,6 +71,13 @@ namespace Program
                 {
                     outputFile = arg;
                 }
+            }
+
+            if (options.ContainsKey("v") || options.ContainsKey("version"))
+            {
+                Console.WriteLine("Version: " + Assembly.GetExecutingAssembly().GetName().Version);
+                Environment.Exit(0);
+                return;
             }
 
 
