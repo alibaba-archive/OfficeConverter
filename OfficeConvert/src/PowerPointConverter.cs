@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Core;
+using System.IO;
 
 namespace OfficeConvert
 {
@@ -15,10 +16,20 @@ namespace OfficeConvert
         private PowerPoint.Presentations presentations;
         private PowerPoint.Presentation presentation;
 
-        public void Convert(String inputFile, String outputFile)
+        public override void Convert(String inputFile, String outputFile)
         {
             try
             {
+                if (!File.Exists(inputFile))
+                {
+                    throw new ConvertException("File not Exists");
+                }
+
+                if (IsPasswordProtected(inputFile))
+                {
+                    throw new ConvertException("Password Exist");
+                }
+
                 app = new PowerPoint.Application();
                 presentations = app.Presentations;
                 presentation = presentations.Open(inputFile, MsoTriState.msoTrue, MsoTriState.msoFalse, MsoTriState.msoFalse);
@@ -27,14 +38,20 @@ namespace OfficeConvert
             }
             catch (Exception e)
             {
+                release();
                 throw new ConvertException(e.Message);
             }
+            release();
+        }
 
+        private void release()
+        { 
             if (presentation != null)
             {
                 try
                 {
                     presentation.Close();
+                    releaseCOMObject(presentation);
                 }
                 catch (Exception e)
                 {
@@ -47,6 +64,7 @@ namespace OfficeConvert
                 try
                 {
                     app.Quit();
+                    releaseCOMObject(app);
                 }
                 catch (Exception e)
                 {

@@ -8,16 +8,8 @@ namespace OfficeConvert
 {
     public class ConvertException: Exception
     {
-        private String message;
-
-        public String getMessage()
+        public ConvertException(String message) : base(message)
         {
-            return message;
-        }
-
-        public ConvertException(String message)
-        {
-            this.message = message;
         }
     }
 }
