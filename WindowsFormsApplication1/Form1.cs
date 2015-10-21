@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1
             }
             catch (ConvertException err)
             {
-                MessageBox.Show(err.Message + "\n" + err.StackTrace);
+                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
             }
         }
 

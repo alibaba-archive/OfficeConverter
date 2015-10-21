@@ -143,7 +143,7 @@ namespace Program
             }
             catch (ConvertException e)
             {
-                Console.WriteLine(e.getMessage());
+                Console.WriteLine(e.Message);
                 Environment.Exit(1);
             }
 

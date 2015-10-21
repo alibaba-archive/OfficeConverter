@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Core;
+using System.IO;
 
 namespace OfficeConvert
 {
@@ -21,6 +21,16 @@ namespace OfficeConvert
             Object nothing = System.Reflection.Missing.Value;
             try
             {
+                if (!File.Exists(inputFile))
+                {
+                    throw new ConvertException("File not Exists");
+                }
+
+                if (IsPasswordProtected(inputFile))
+                {
+                    throw new ConvertException("Password Exist");
+                }
+
                 app = new Word.Application();
                 docs = app.Documents;
                 doc = docs.Open(inputFile, false, true, false, nothing, nothing, true, nothing, nothing, nothing, nothing, false, false, nothing, true, nothing);

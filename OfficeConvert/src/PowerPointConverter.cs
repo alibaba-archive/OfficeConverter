@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Core;
+using System.IO;
 
 namespace OfficeConvert
 {
@@ -19,6 +20,16 @@ namespace OfficeConvert
         {
             try
             {
+                if (!File.Exists(inputFile))
+                {
+                    throw new ConvertException("File not Exists");
+                }
+
+                if (IsPasswordProtected(inputFile))
+                {
+                    throw new ConvertException("Password Exist");
+                }
+
                 app = new PowerPoint.Application();
                 presentations = app.Presentations;
                 presentation = presentations.Open(inputFile, MsoTriState.msoTrue, MsoTriState.msoFalse, MsoTriState.msoFalse);

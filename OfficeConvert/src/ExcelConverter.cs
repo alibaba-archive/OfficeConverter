@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Core;
@@ -20,6 +21,16 @@ namespace OfficeConvert
             Object nothing = Type.Missing;
             try
             {
+                if (!File.Exists(inputFile))
+                {
+                    throw new ConvertException("File not Exists");
+                }
+
+                if (IsPasswordProtected(inputFile))
+                {
+                    throw new ConvertException("Password Exist");
+                }
+
                 app = new Excel.Application();
                 books = app.Workbooks;
                 book = books.Open(inputFile, false, true, nothing, nothing, nothing, true, nothing, nothing, false, false, nothing, false, nothing, false);
@@ -42,7 +53,6 @@ namespace OfficeConvert
             catch (Exception e)
             {
                 release();
-                Console.WriteLine(e.Message);
                 throw new ConvertException(e.Message);
             }
 
